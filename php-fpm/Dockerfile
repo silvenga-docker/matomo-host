@@ -24,6 +24,9 @@ RUN set -xe \
     freetype \
     libjpeg-turbo \
     libxml2 \
-    oniguruma
+    oniguruma \
+    libmaxminddb
+
+COPY rootfs/ /
 
 EXPOSE 9000
