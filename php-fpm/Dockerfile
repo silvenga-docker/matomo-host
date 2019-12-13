@@ -24,9 +24,18 @@ RUN set -xe \
     freetype \
     libjpeg-turbo \
     libxml2 \
-    oniguruma \
-    libmaxminddb
+    oniguruma
 
-COPY rootfs/ /
+RUN set -xe \
+    && apk --no-cache add libmaxminddb-dev \
+    && curl -fsSL 'https://github.com/maxmind/MaxMind-DB-Reader-php/archive/v1.5.1.tar.gz' -o maxmind.tar.gz \
+    && mkdir -p /tmp/maxmind \
+    && tar -xf maxmind.tar.gz -C /tmp/maxmind --strip-components=1 \
+    && rm maxmind.tar.gz \
+    && docker-php-ext-configure /tmp/maxmind/ext \
+    && docker-php-ext-install /tmp/maxmind/ext  \
+    && rm -r /tmp/maxmind \
+    && apk del libmaxminddb-dev \
+    && apk --no-cache add libmaxminddb
 
 EXPOSE 9000
