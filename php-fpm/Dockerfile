@@ -10,6 +10,7 @@ RUN set -xe \
     libxml2-dev \
     oniguruma-dev \
     && docker-php-ext-install -j$(nproc) \
+    opcache \
     pdo \
     pdo_mysql \
     curl \
@@ -42,5 +43,7 @@ RUN set -xe \
     && rm -r /tmp/maxmind \
     && apk del libmaxminddb-dev \
     && apk --no-cache add libmaxminddb
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 EXPOSE 9000
