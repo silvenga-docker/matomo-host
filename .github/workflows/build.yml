@@ -12,6 +12,7 @@ jobs:
     - uses: silvenga-docker/build-image@latest
       with:
         workingPath: ./nginx
+        dockerRegistery: ghcr.io
         dockerUserName: ${{ secrets.GHCR_USER }}
         dockerPassword: ${{ secrets.GHCR_PAT }}
         dockerImageName: ${{ github.repository }}/nginx
@@ -19,6 +20,7 @@ jobs:
     - uses: silvenga-docker/build-image@latest
       with:
         workingPath: ./php-fpm
+        dockerRegistery: ghcr.io
         dockerUserName: ${{ secrets.GHCR_USER }}
         dockerPassword: ${{ secrets.GHCR_PAT }}
         dockerImageName: ${{ github.repository }}/php-fpm
