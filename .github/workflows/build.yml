@@ -12,14 +12,14 @@ jobs:
     - uses: silvenga-docker/build-image@latest
       with:
         workingPath: ./nginx
-        dockerUserName: silvenga-docker
-        dockerPassword: ${{ secrets.GITHUB_TOKEN }}
+        dockerUserName: ${{ secrets.GHCR_USER }}
+        dockerPassword: ${{ secrets.GHCR_PAT }}
         dockerImageName: ${{ github.repository }}/nginx
         dockerTags: latest,${{ github.sha }}
     - uses: silvenga-docker/build-image@latest
       with:
         workingPath: ./php-fpm
-        dockerUserName: silvenga-docker
-        dockerPassword: ${{ secrets.GITHUB_TOKEN }}
+        dockerUserName: ${{ secrets.GHCR_USER }}
+        dockerPassword: ${{ secrets.GHCR_PAT }}
         dockerImageName: ${{ github.repository }}/php-fpm
         dockerTags: latest,${{ github.sha }}
