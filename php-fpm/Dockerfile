@@ -1,5 +1,7 @@
 FROM php:8-fpm-alpine
 
+LABEL org.opencontainers.image.source https://github.com/silvenga-docker/matomo-host
+
 RUN set -xe \
     && apk upgrade --no-cache \
     && apk add --no-cache --virtual build-dependencies \
